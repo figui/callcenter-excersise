@@ -3,40 +3,57 @@ package com.almundo.callcenter.services;
 import com.almundo.callcenter.model.Employee;
 import org.apache.log4j.Logger;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.Random;
 import java.util.concurrent.PriorityBlockingQueue;
 
 public class Dispatcher {
     
     private PriorityBlockingQueue<Employee> atendees;
-    private ExecutorService callPool;
     
-    public static final Integer MAX_POOL_SIZE = 10;
+    private static final Integer MAX_CALL_DURATION = 10000;
+    private static final Integer MIN_CALL_DURATION = 5000;
     
     private static final Logger log = Logger.getLogger(Dispatcher.class);
-    
-    public Dispatcher(PriorityBlockingQueue<Employee> atendees, Integer poolSize) {
-        this.callPool = Executors.newFixedThreadPool(poolSize != null ? poolSize : MAX_POOL_SIZE);
+
+    /**
+     * Constructor
+     * @param atendees
+     */
+    public Dispatcher(PriorityBlockingQueue<Employee> atendees) {
         this.atendees = atendees;
     }
 
-    public synchronized void dispatchCall(Integer call) {
+    /**
+     * Take an available atendee and perform the call, then put it back in the atendees queue. 
+     * If no atendee are available, then the take() method lock all new incoming calls till an atendee is available again
+     * @param call
+     * @return
+     */
+    public Employee dispatchCall(Integer call) {
+        Employee atendee = null;
         try {
-            Employee atendee = atendees.take();
+            atendee = atendees.take();
             log.info("Incoming call #" + call + " Assign atendee " + atendee);
-            callPool.execute(new ProcessCall(atendee, call, this));
+            doCall(call, atendee);
         } catch (InterruptedException e) {
             log.error(e.getMessage(), e);
         }
-    }
-    
-    void finishCall(Integer call, Double duration, Employee atendee) {
-        log.info("Finish Call#" + call + " with Atendee " + atendee + " was finished with duration " + duration);
-        atendees.add(atendee);
+        return atendee;
     }
 
-    public void shutdown() {
-        callPool.shutdown();
+    /**
+     * Simulate call execution and when call is finish, the atendee goes back to the queue
+     * @param call
+     * @param atendee
+     */
+    private void doCall(Integer call, Employee atendee) {
+        try {
+            Integer duration = new Random().nextInt((MAX_CALL_DURATION - MIN_CALL_DURATION) + 1) + MIN_CALL_DURATION;
+            Thread.sleep(duration);
+            log.info("Finish Call#" + call + " with Atendee " + atendee + " was finished with duration " + duration);
+            atendees.add(atendee);
+        } catch (InterruptedException e) {
+            log.error(e.getMessage(), e);
+        }
     }
 }

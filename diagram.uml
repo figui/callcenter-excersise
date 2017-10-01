@@ -3,57 +3,43 @@
   <ID>JAVA</ID>
   <OriginalElement>com.almundo.callcenter.model.Director</OriginalElement>
   <nodes>
-    <node x="155.0" y="124.0">com.almundo.callcenter.model.Supervisor</node>
-    <node x="57.0" y="472.0">com.almundo.callcenter.services.Dispatcher</node>
-    <node x="365.0" y="125.0">com.almundo.callcenter.model.Operator</node>
-    <node x="-253.0" y="570.0">com.almundo.callcenter.model.Context</node>
-    <node x="-46.0" y="124.0">com.almundo.callcenter.model.Director</node>
-    <node x="141.0" y="268.0">com.almundo.callcenter.model.Employee</node>
-    <node x="586.0" y="474.0">com.almundo.callcenter.services.ProcessCall</node>
+    <node x="454.0" y="193.0">com.almundo.callcenter.model.Supervisor</node>
+    <node x="-56.0" y="283.0">com.almundo.callcenter.services.Dispatcher</node>
+    <node x="252.0" y="193.0">com.almundo.callcenter.model.Operator</node>
+    <node x="666.0" y="193.0">com.almundo.callcenter.model.Director</node>
+    <node x="0.0" y="0.0">com.almundo.callcenter.model.Employee</node>
   </nodes>
   <notes />
   <edges>
     <edge source="com.almundo.callcenter.model.Supervisor" target="com.almundo.callcenter.model.Employee">
       <point x="0.0" y="0.0" />
+      <point x="540.0" y="76.5" />
       <point x="0.0" y="0.0" />
     </edge>
     <edge source="com.almundo.callcenter.model.Operator" target="com.almundo.callcenter.model.Employee">
       <point x="0.0" y="0.0" />
+      <point x="333.0" y="76.5" />
       <point x="0.0" y="0.0" />
-    </edge>
-    <edge source="com.almundo.callcenter.services.ProcessCall" target="com.almundo.callcenter.model.Employee">
-      <point x="0.0" y="-5.442868004738656" />
-      <point x="0.0" y="-5.442868004738671" />
     </edge>
     <edge source="com.almundo.callcenter.services.Dispatcher" target="com.almundo.callcenter.model.Employee">
-      <point x="-4.922999885195509" y="-0.8741121955247735" />
-      <point x="-4.922999885195495" y="-0.8741121955247593" />
-    </edge>
-    <edge source="com.almundo.callcenter.model.Context" target="com.almundo.callcenter.services.Dispatcher">
-      <point x="0.0" y="0.0" />
-      <point x="0.0" y="0.0" />
-    </edge>
-    <edge source="com.almundo.callcenter.services.Dispatcher" target="com.almundo.callcenter.services.ProcessCall">
-      <point x="0.0" y="11.395367248511633" />
-      <point x="0.0" y="11.395367248511619" />
+      <point x="-5.0" y="0.0" />
+      <point x="106.5" y="222.5" />
+      <point x="0.0" y="5.0" />
     </edge>
     <edge source="com.almundo.callcenter.model.Director" target="com.almundo.callcenter.model.Employee">
       <point x="0.0" y="0.0" />
+      <point x="744.5" y="76.5" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.almundo.callcenter.services.ProcessCall" target="com.almundo.callcenter.services.Dispatcher">
-      <point x="0.0" y="-11.395367248511619" />
-      <point x="0.0" y="-11.395367248511633" />
-    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="324.0" y="411.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="324.0" y="212.0" />
   <SelectedNodes />
   <Categories>
-    <Category>Properties</Category>
-    <Category>Methods</Category>
-    <Category>Constructors</Category>
     <Category>Fields</Category>
     <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
   </Categories>
   <SCOPE>Project Files</SCOPE>
   <VISIBILITY>private</VISIBILITY>
